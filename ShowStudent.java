@@ -1,22 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package showstudent;
+import java.util.Scanner;
 
-/**
- *
- * @author m304user
- */
 public class ShowStudent {
-    
-    public static void main(String Ars[]){
-        Student A=new Student();
-        System.out.println("Grade Point Average: "+A.getGradeAve());
-        System.out.println("ID Number: "+A.getID());
-        System.out.println("Total Credits Earned: "+A.getCredits());
-        System.out.println("Total Points Number: "+A.getPoints());
-    }
-    
-}
 
+  
+    public static void main(String[] args) {
+       Scanner cs = new Scanner(System.in);
+        System.out.println("Enter IDno:");
+        String setID = cs.nextLine();
+        
+       
+       Student Emilfontanilla = new Student();
+         
+  
+         Emilfontanilla.setHours(3);
+         Emilfontanilla .setCreditHours(3);
+         Emilfontanilla.setID(186968851);
+         
+        Scanner sc = new Scanner (System.in); 
+        System.out.println("GPA:  "+Emilfontanilla.GPA());
+        System.out.println("Points:  "+Emilfontanilla.points());
+        System.out.println("ID:  "+Emilfontanilla.getIDnumber());
+        System.out.println("Hours Creditied:  "+Emilfontanilla.getCreditHours()+Emilfontanilla .getNoOfHours ());
+        
+   
+        
+        System.out.println("studentletter "+Emilfontanilla.StudentLetter());
+    
+    
+    }
+   
+}
+    
