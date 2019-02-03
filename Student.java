@@ -1,51 +1,92 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+rivate int IDnumber;
+    private int CreditHours;
+    private int NoOfHours;
+    private int GPA; 
+    private int points;
+    private char StudentLetter;
+    private int Comp;
+    //3 hours = 12 points 
+    // 1 hour = 4 points
+    //points = number of hours * 4 ?
+    //Gpa = Points/Credithours 
 
-/**
- *
- * @author m304user
- */
-public class Student {
 
-    private int ID;
-    private int CreditHr;
-    private int Points;
+    public Student()
+    {
+        this.IDnumber=1;
+        this.CreditHours=0;
+        this.NoOfHours =0;
+        this.GPA=0;
+    }
     
-    public Student(){
-        this.ID=180719444;
-        this.CreditHr=4 ;
-        this.Points=12;
+    
+        public int getIDnumber()
+    {
+        return IDnumber;
     }
-    public int getID(){
-        return ID;
+    public int getCreditHours()
+    {
+        return CreditHours;
     }
-    public int getCredits(){
-        return CreditHr;
+        public int getGPA()
+    {
+        return GPA;
     }
-    public int getPoints(){
-        return Points;
+        public int getNoOfHours()
+    {
+        return NoOfHours;
     }
-    public int getGradeAve(){
-        int GradeAve;
-        GradeAve=Points/CreditHr;
-        return GradeAve;
-    }    
-    public void setID(int ID){
-        this.ID=ID;
+        public int getPoints()
+    {
+        return points;
     }
-    public void setCreditHr(int credit){
-        this.CreditHr=credit;
+    public int NoOfHours()
+    {
+        return NoOfHours;
     }
-    public void setPoints(int points){
-        this.Points=points;
+    public void setID (int IDnumber)
+    {
+        this.IDnumber = IDnumber;
     }
-
-       
+    public void setCreditHours(int CreditHours)
+    {
+        this.CreditHours = CreditHours;
+    }
+    public void setHours(int NoOfHours)
+    {
+        this.NoOfHours = NoOfHours;
+    }
+ 
+    public int points()
+    {
+   points = CreditHours *4;
+    return points;
+    } 
+    
+        public int GPA()
+    {
+   GPA = points/ CreditHours;
+   
+   
+    return GPA;
+    } 
+        
+                public char StudentLetter()
+    {
+   GPA = points/ CreditHours*3;
+   
+  
+           //Comp =  CreditHours * 4; 
+   if (NoOfHours *4 == points){
+       StudentLetter = 'A';
+   }
+   if (NoOfHours *4 != points){
+       StudentLetter = 'B';     
+   }
+   if (CreditHours ==1){
+       StudentLetter = 'C';
+   }
+    return StudentLetter;
+    } 
+    
 }
-
-    
-    
-
