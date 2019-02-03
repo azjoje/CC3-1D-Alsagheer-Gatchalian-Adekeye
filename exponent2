@@ -1,0 +1,29 @@
+mport java.util.Scanner;
+public class Exponent2{
+
+    public static void main(String[]args){
+        int num = 0;
+        Scanner sc = new Scanner(System.in);
+        try {
+            System.out.println("intput an element:");
+             num = sc.nextInt();
+            }
+        catch(Exception e){
+            System.out.println("invalid.please try again!");
+            sc = new Scanner(System.in);
+        }
+       
+        System.out.println("the square of the number is : " +SquareNum(num)+".");
+        System.out.println("the cube of the number is: " +CubeNums(num)+".");
+    }
+    public static int SquareNum(int num ){
+        return num*num;
+     }
+     public static int CubeNums(int num ){
+        return num*num*num;
+     }
+    private static String SquareNums(int num){
+            throw new UnsupportedOperationException("Not supported yet.");
+}
+}
+
