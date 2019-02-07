@@ -1,0 +1,14 @@
+//The Dice class models rolling a regular six-sided die
+import java.util.Random;
+// instance variables
+public class Dice {
+    Random r;
+    //Instantiate the object r     
+    public Dice() {
+        r = new Random();
+    }
+    //Returns a random integer between 1 and 6     
+    public int roll() {
+        return r.nextInt(6)+1;
+    }
+}
