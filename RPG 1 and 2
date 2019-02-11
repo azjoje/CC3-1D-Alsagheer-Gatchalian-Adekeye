@@ -1,0 +1,177 @@
+dice,java
+___________________________________
+
+//The Dice class models rolling a regular six-sided die
+import java.util.Random;
+// instance variables
+public class Dice {
+    Random r;
+    //Instantiate the object r     
+    public Dice() {
+        r = new Random();
+    }
+    //Returns a random integer between 1 and 6     
+    public int roll() {
+        return r.nextInt(6)+1;
+    }
+}
+
+________________________________________________
+
+Character.java
+_________________________________________________
+public class Character {
+    // static variables
+    static Dice dice = new Dice();
+    // instance variables
+    private String name;
+    private int armor,strength,dexterity,intelligence,maxlife,currentlife;
+    /*
+    Constructor takes 4 parameters: n,s,d,i and assigns them to instance variables name, strength, dexterity, intelligence.
+    Also uses the dice instance to assign a random number to maxlife. currentlife is initialized to maxlife
+    */
+    Character(String n, int s, int d, int i) {
+        name = n;
+        strength = s;
+        dexterity = d;
+        intelligence = i;
+        maxlife = dice.roll()+10;
+        currentlife = maxlife;    
+    }
+    //Returns a random die roll using the roll method in the Dice.java, *modified by the character's strength
+    public int attack() {
+        return dice.roll()+strength;
+    }
+    //Decreases currentlife by the damage parameter
+    public int wound(int damage) {
+        return currentlife -= damage;
+    }
+    //Increases currentlife by the heal parameter. currentlife cannot be greater than maxlife
+    public int heal(int heal) {
+        return currentlife += heal;
+    }
+    //getters
+    //Returns name
+    public String getName(){
+        return name;
+    }
+    //Returns strength
+    public int getStrength(){
+        return strength;
+    }
+    //Returns dexterity
+    public int getDexterity(){
+        return dexterity;
+    }
+    //Returns intelligence
+    public int getIntelligence(){
+        return intelligence;
+    }
+    //Returns currentlife
+    public int getCurrentLife(){
+        return currentlife;
+    }
+    //Returns maxlife
+    public int getMaxLife(){
+        return maxlife;
+    }
+    //setters
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setStrenght(int str){
+        this.strength = str;
+    }
+    public void setDexterity(int dex){
+        this.dexterity = dex;
+    }
+    public void setIntelligence(int intel){
+        this.intelligence = intel;
+    }
+    public void setCurrentlife(int currentlife){
+        this.currentlife=currentlife;
+    }
+    public void setMaxlife(int maxlife){
+        this.maxlife=maxlife;
+    }
+    
+    //Armor
+    Character (int a){
+        armor = a;
+    }
+    public int getArmor(){
+        return armor;
+    }
+    public void setArmor(int amr){
+        this.armor= amr;
+    }
+        
+        
+}
+    
+
+________________________________________
+
+testcharter.java
+
+__________________________________________
+
+public class TestCharacter {
+    
+    public static void main(String[] args){
+
+        Character p1 = new Character("A", 0,0,0);
+        Character p2 = new Character("B", 0,0,0);
+       
+        int round = 1;
+        int damage;
+       
+        System.out.println("");
+        
+        while(p1.getCurrentLife() >0 && p2.getCurrentLife() >0 && round<=3){
+                System.out.println("__________");
+            System.out.println("Round "+round);
+            System.out.println(p1.getName() +"'s health: "+ p1.getCurrentLife());
+            System.out.println(p2.getName() +"'s health: "+ p2.getCurrentLife());
+            
+            damage = p1.attack();
+            System.out.println(p1.getName() +" attacks for "+ damage);
+            p2.wound(damage);
+            
+            damage = p2.attack();
+            System.out.println(p2.getName() +" attacks for "+damage);
+            p1.wound(damage);
+            
+            round++;
+                System.out.println("__________");                    
+        }
+                System.out.println("__________");
+        System.out.println("-END GAME-");
+        System.out.println(p1.getName() +"'s health: "+ p1.getCurrentLife());
+        System.out.println(p2.getName() +"'s health: "+ p2.getCurrentLife());
+        if(p1.getCurrentLife() > p2.getCurrentLife()){
+            System.out.println("-"+ p1.getName()+" WINS-");
+        }else if(p2.getCurrentLife() > p1.getCurrentLife()){
+            System.out.println("-"+ p2.getName()+" WINS-");
+        }else if(p1.getCurrentLife() <=0 && p2.getCurrentLife() <=0 || p1.getCurrentLife() == p2.getCurrentLife()){
+            System.out.println("-DRAW-");
+        }
+        
+    }
+}
+
+__________________________________________________
+
+Wizard.Java Extended
+__________________________________________________
+
+public class Wizard extends Character{
+
+    public Wizard(String n, int s, int d, int i) {
+        super(n, s, d, i);
+        
+        
+        
+    }
+    
+}
