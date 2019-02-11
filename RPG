@@ -1,0 +1,261 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package rpg_;
+
+/**
+ *
+ * @author m304user
+ */
+public class RPG_ {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+    }
+    
+}
+______________________________________
+
+Dice.java
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package rpg_;
+
+import java.util.*;
+
+/**
+ *
+ * @author m304user
+ */
+public class Dice {
+    
+   /** instance variables */
+    private Random r;
+    
+    /**
+    * Instantiate the object r
+    */
+    public Dice() {
+        
+        r = new Random();  
+    }
+    
+    /**
+    * Returns a random integer between 1 and 6
+    */
+
+    public int roll() {
+        return r.nextInt(69) + 1;
+    }
+}
+_____________________________________________
+
+Character.java
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package rpg_;
+
+/**
+ *
+ * @author m304user
+ */
+public class Character {
+    /** static variables */
+    static Dice dice = new Dice();
+
+   private String name;
+   private int strength,dexterity, intelligence, currentLife, maxLife;
+/** instance variables */
+/**
+* Constructor takes 4 parameters: n,s,d,i and assigns them to
+* instance variables name, strength, dexterity, intelligence.
+* Also uses the dice instance to assign a random
+* number to maxlife. currentlife is initialized to maxlife
+*/public Character(){
+    
+
+}
+    public Character(String name, int strength, int dexterity, int intelligence) {
+        this.name = name;
+        this.strength = strength;
+        this.dexterity = dexterity;
+        this.intelligence = intelligence;
+        this.maxLife = (dice.roll()*10);
+        this.currentLife = this.maxLife;
+                
+
+    }
+/**
+* Returns a random die roll using the roll method in the
+* Dice.java, *modified by the character's strength
+*/
+  
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public double getDexterity() {
+        return dexterity;
+    }
+
+    public void setDexterity(int dexterity) {
+        this.dexterity = dexterity;
+    }
+
+    public double getIntelligence() {
+        return intelligence;
+    }
+
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
+
+    public double getCurrentLife() {
+        return currentLife;
+    }
+
+    public void setCurrentLife(int currentLife) {
+        this.currentLife = currentLife;
+    }
+
+    public double getMaxLife() {
+        return maxLife;
+    }
+
+    public void setMaxLife(int maxLife) {
+        this.maxLife = maxLife;
+    }
+
+    public double attack() {
+    
+        return strength / (dice.roll() + 1);
+    }
+
+    public void wound(int damage) {
+        currentLife -= damage;
+    }
+
+    public void heal(int heal) {
+        currentLife -= heal;
+        if(currentLife > maxLife){
+            currentLife=maxLife;
+        }
+    }
+
+}
+
+    
+    
+___________________________________
+
+testCharacter.java
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package rpg_;
+
+/**
+ *
+ * @author m304user
+ */
+public class TestCharacter {
+    
+    public static void main(String[] args) {
+
+        Character Jepa = new Character("Jepa", 17, 17, 20);
+        Character Jov = new Character("Jov", 15, 16, 55);
+        Dice die = new Dice();
+        
+             
+              System.out.println(die.roll());
+        for(int i = 3; Jepa.getCurrentLife() >= 0 && Jov.getCurrentLife() >= 0; i++){
+              System.out.println(" ROUND " + i);
+              System.out.println(Jepa.getName() + "'s Life : " + Jepa.getCurrentLife());
+              System.out.println(Jov.getName() + "'s Life : " + Jov.getCurrentLife());
+              System.out.println("------------------");
+
+            double a = Jepa.attack();
+            Jov.wound((int) a);
+            
+            double b = Jov.attack();
+            Jepa.wound((int) b);
+
+              System.out.println(Jepa.getName() + " Attacks " + Jov.getName() + " : " + a);
+              System.out.println(Jov.getName()+ " Attacks " + Jepa.getName() + " : " + b);
+              System.out.println("------------------");
+              System.out.println(Jepa.getName() + "'s Current Life : " +Jepa.getCurrentLife());
+              System.out.println(Jov.getName() + "'s Current Life : " +Jov.getCurrentLife());
+                
+//            Jepa.wound(a);
+//            Jov.wound(b);
+//            
+           System.out.println("\n\n");
+            
+           
+            if(Jepa.getCurrentLife() <= 0 || Jov.getCurrentLife() <= 0){
+                System.out.println("\nDraw\n");
+                System.out.println("Final Health: " + Jepa.getName()+ " : " + Jepa.getCurrentLife());
+                System.out.println("Final Health: " + Jov.getName()+ " : " + Jov.getCurrentLife());
+                break;
+                
+            } else if(Jepa.getCurrentLife() <= 0){
+                System.out.println(Jov.getName() + " Wins!!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+                System.out.println("Final Health: " + Jepa.getName()+ " : " + Jepa.getCurrentLife());
+                System.out.println("Final Health: " + Jov.getName()+ " : " + Jov.getCurrentLife());
+                break;
+                
+            } else if(Jov.getCurrentLife() <= 0){
+                System.out.println(Jepa.getName() + " Wins!!\n");
+                System.out.println("Final Health: " + Jepa.getName()+ " : " + Jepa.getCurrentLife());
+                System.out.println("Final Health: " + Jov.getName()+ " : " + Jov.getCurrentLife());
+                break;
+        
+
+            }
+        }
+    }
+        }
+
+    
+
+
+        
+        
+    
+    
+
+
+
+    
+
+
